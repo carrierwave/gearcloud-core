@@ -15,21 +15,23 @@ public class Possession {
     @Enumerated(EnumType.STRING)
     private Affinity affinity;
 
-    private String productName;
+    @ManyToOne
+    @JoinColumn(name = "product_id")
+    private Product product;
 
 
-    public Possession(Profile profile, Affinity affinity, String productName) {
+    public Possession(Profile profile, Affinity affinity, Product product) {
         this.profile = profile;
         this.affinity = affinity;
-        this.productName = productName;
+        this.product = product;
     }
 
-    public String getProductName() {
-        return productName;
+    public Product getProduct() {
+        return product;
     }
 
-    public void setProductName(String productName) {
-        this.productName = productName;
+    public void setProduct(Product product) {
+        this.product = product;
     }
 
     public Long getId() {
