@@ -17,6 +17,7 @@ public class Possession {
 
     private String productName;
 
+
     public Possession(Profile profile, Affinity affinity, String productName) {
         this.profile = profile;
         this.affinity = affinity;
