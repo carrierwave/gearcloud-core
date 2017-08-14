@@ -1,6 +1,8 @@
 package com.gearcloud.core.model;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class Possession {
@@ -18,6 +20,9 @@ public class Possession {
     @ManyToOne
     @JoinColumn(name = "product_id")
     private Product product;
+
+    @OneToMany(targetEntity = Statement.class, mappedBy = "possession", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private Set<Statement> statements = new HashSet();
 
 
     public Possession(Profile profile, Affinity affinity, Product product) {
@@ -56,5 +61,13 @@ public class Possession {
 
     public void setAffinity(Affinity affinity) {
         this.affinity = affinity;
+    }
+
+    public Set<Statement> getStatements() {
+        return statements;
+    }
+
+    public void setStatements(Set<Statement> statements) {
+        this.statements = statements;
     }
 }
