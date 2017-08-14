@@ -9,24 +9,28 @@ public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String brand;
+    @ManyToOne
+    @JoinColumn(name = "brand_id")
+    private Brand brand;
     private String name;
-    private String gearCommunity;
+    @ManyToOne
+    @JoinColumn(name= "community_id")
+    private Community community;
 
     @OneToMany(targetEntity = Possession.class, mappedBy = "product", fetch=FetchType.LAZY, cascade=CascadeType.ALL)
     private Set<Possession> possessors = new HashSet();
 
-    public Product(String brand, String name, String gearCommunity) {
+    public Product(Brand brand, String name, Community community) {
         this.brand = brand;
         this.name = name;
-        this.gearCommunity = gearCommunity;
+        this.community = community;
     }
 
-    public String getBrand() {
+    public Brand getBrand() {
         return brand;
     }
 
-    public void setBrand(String brand) {
+    public void setBrand(Brand brand) {
         this.brand = brand;
     }
 
@@ -38,11 +42,11 @@ public class Product {
         this.name = name;
     }
 
-    public String getGearCommunity() {
-        return gearCommunity;
+    public Community getCommunity() {
+        return community;
     }
 
-    public void setGearCommunity(String gearCommunity) {
-        this.gearCommunity = gearCommunity;
+    public void setCommunity(Community community) {
+        this.community = community;
     }
 }

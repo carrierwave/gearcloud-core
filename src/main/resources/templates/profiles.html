@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Profile List</title>
+</head>
+<body>
+
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Bio</th>
+    </tr>
+    <tr th:each="profile : ${profiles}">
+        <td th:text="${profile.fullName}">Adrian</td>
+        <td th:text="${profile.bio}">I am Adrian</td>
+    </tr>
+</table>
+
+</body>
+</html>

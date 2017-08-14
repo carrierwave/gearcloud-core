@@ -9,6 +9,7 @@ public class Profile {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name="ID")
     private Long id;
     private String fullName;
     private String bio;
@@ -16,9 +17,15 @@ public class Profile {
     @OneToMany(targetEntity = Possession.class, mappedBy = "profile", fetch=FetchType.LAZY, cascade=CascadeType.ALL)
     private Set<Possession> possessions = new HashSet();
 
+    @ManyToMany(mappedBy = "profiles")
+    private Set<Community> communities = new HashSet();
+
     public Profile(String fullName, String bio) {
         this.fullName = fullName;
         this.bio = bio;
+    }
+
+    public Profile() {
     }
 
     public Long getId() {
